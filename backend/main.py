@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel
 from typing import List
@@ -42,9 +41,9 @@ def subscribe(payload: SubscribePayload):
     return {"ok": True}
 
 # Serve static files
-app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Homepage
 @app.get("/")
 def home():
     return FileResponse("static/index.html")
+
